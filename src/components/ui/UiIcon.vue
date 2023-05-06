@@ -1,16 +1,26 @@
 <script setup lang="ts">
 import Notification from './icons/notification.svg'
+import Settings from './icons/settings.svg'
+import Filter from './icons/filter.svg'
+import Export from './icons/export.svg'
+import ThreeDots from './icons/three-dots.svg'
+import ArrowDown from './icons/arrow-down.svg'
+
 const icons = {
-  
+  Notification,
+  Settings,
+  Filter,
+  Export,
+  ThreeDots,
+  ArrowDown
 }
-export type Icons = keyof typeof icons;
+export type Icons = keyof typeof icons
 interface Props {
   name: Icons
 }
+const props = defineProps<Props>()
 </script>
 
 <template>
-  <span>
-
-  </span>
+  <component :is="icons[props.name]" />
 </template>

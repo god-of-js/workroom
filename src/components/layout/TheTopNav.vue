@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import UiAvatar from '../ui/UiAvatar.vue'
+import UiIcon from '../ui/UiIcon.vue'
 import TheLogo from './TheLogo.vue'
+import avatar from '../../assets/images/Avatar.jpg'
 
 const appRoute = useRoute()
 
@@ -35,9 +38,21 @@ const routes = [
 
       <ul>
         <li v-for="(route, index) in routes" :key="index">
-          <router-link :to="route.path"  :class="[{isActive: route.name === appRoute.name}]">{{ route.name }}</router-link>
+          <router-link :to="route.path" :class="[{ isActive: route.name === appRoute.name }]">{{
+            route.name
+          }}</router-link>
         </li>
       </ul>
+    </div>
+
+    <div class="user-info-container">
+      <router-link to="/">
+        <UiIcon name="Notification" />
+      </router-link>
+      <router-link to="/">
+        <UiIcon name="Settings" />
+      </router-link>
+      <UiAvatar :img="avatar" />
     </div>
   </nav>
 </template>
@@ -76,8 +91,18 @@ a {
   color: #6a6a6a;
   text-decoration: none;
 
-  &.isActive, &:hover {
+  &.isActive,
+  &:hover {
     color: #ffffff;
+  }
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  svg {
+    fill: white;
   }
 }
 </style>
