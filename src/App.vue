@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import TheTopNav from './components/layout/TheTopNav.vue'
 </script>
 
 <template>
-  <main id="app">
+  <main class="app">
+    <TheTopNav />
     <RouterView />
   </main>
 </template>
 
 <style lang="scss">
-#app {
-  height: 100vh;
-  width: 100vw;
+.app {
+  min-height: 100vh;
 }
 </style>
