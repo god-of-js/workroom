@@ -16,7 +16,6 @@ interface Props {
   isUpcomingPremier?: boolean
 }
 const props = defineProps<Props>()
-
 const headers = [
   {
     title: 'Name',
@@ -64,6 +63,10 @@ const dataList = computed(() => {
   if (props.isUpcomingPremier) return movies.filter(({ isUpcomingPremier }) => isUpcomingPremier)
   return movies
 })
+
+function viewMovie(index: number) {
+  router.push(`/movies/${index}`)
+}
 </script>
 
 <template>
@@ -84,9 +87,11 @@ const dataList = computed(() => {
     <template #popularity="{ data }">
       <TrendStat :isTrending="data.isTrending" :popularity="data.popularity" />
     </template>
-    <template #actions>
+    <template #actions="{data}">
       <div class="action-btn-container">
-        <UiButton>View</UiButton>
+        <router-link :to="`/movies/${data.index}`">
+          <UiButton>View</UiButton>
+        </router-link>
       </div>
     </template>
     <template #footer v-if="!!props.footerBtnText">
@@ -101,6 +106,10 @@ const dataList = computed(() => {
 .action-btn-container {
   display: flex;
   justify-content: flex-end;
+
+  a{
+    text-decoration: none;
+  }
 
   button {
     width: 63px;

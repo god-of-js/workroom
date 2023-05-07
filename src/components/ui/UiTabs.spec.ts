@@ -24,7 +24,7 @@ describe('src/components/ui/UiTabs.vue', () => {
             path: '/?upcoming-premier'
           }
         ],
-        activeRoute: '/?upcoming-premier'
+        activeTab: '/?upcoming-premier'
       }
     })
 

@@ -171,4 +171,7 @@ export default [
     isTrending: true,
     popularity: 10
   }
-]
+].map((item, index) => ({
+  ...item,
+  index: `${index}`
+}))

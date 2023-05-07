@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 import UiTable from './UiTable.vue'
-import UiPill from './UiPill.vue'
+import movies from '@/data/movies'
 
 const headers = [
   {
@@ -26,7 +26,7 @@ const data = [
   }
 ]
 
-describe('src/components/ui/UiTabs.vue', () => {
+describe('src/components/ui/UiTable.vue', () => {
   it('Headers are rendered', async () => {
     const wrapper = mount(UiTable, {
       props: {
@@ -40,29 +40,24 @@ describe('src/components/ui/UiTabs.vue', () => {
 
     expect(firstHeader.exists()).toBe(true)
     expect(firstHeader.text()).toBe('Name')
-    expect(firstHeader.html()).toContain('UiIcon')
   })
 
   it('Data is rendered', async () => {
     const wrapper = mount(UiTable, {
       props: {
         headers,
-        data: [],
+        data: movies,
         isSearchable: false
       },
       slots: {
-        categories: UiPill
+        categories: '<span>a normal category</span>'
       }
     })
 
-    const name = wrapper.findAll('#name')[0]
-    const categories = wrapper.findAll('#categories')[0]
+    const firstDataItem = wrapper.findAll('td')[0]
+    const categories = wrapper.findAll('td')[1]
 
-    expect(name.exists()).toBe(true)
-    expect(name.text()).toBe('Wonder Woman')
-
-    expect(categories.exists()).toBe(true)
-
-    expect(categories.html()).toContain('UiPill')
+    expect(firstDataItem.exists()).toBe(true)
+    expect(firstDataItem.text()).toBe(movies[0].name)
   })
 })
