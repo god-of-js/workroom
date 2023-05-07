@@ -23,6 +23,7 @@ import UiIcon from '../ui/UiIcon.vue'
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   position: relative;
+  height: 364px;
   .body {
     padding: 24px;
     margin-bottom: 72px;
