@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import UiIcon from '../ui/UiIcon.vue'
+import ComingSoon from './ComingSoon.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import UiIcon from '../ui/UiIcon.vue'
         </div>
         <UiIcon name="ThreeDots" />
       </div>
+      <ComingSoon />
     </div>
   </div>
 </template>

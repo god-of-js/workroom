@@ -2,6 +2,7 @@
 import { ref, watchEffect, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import movies from '@/data/movies'
+import ComingSoon from '@/components/analytics/ComingSoon.vue'
 import { readFile } from '@/helpers/index'
 import ThePageHeader from '@/components/layout/ThePageHeader.vue'
 import AverageWatchTime from '@/components/analytics/AverageWatchTime.vue'
@@ -116,9 +117,7 @@ watchEffect(async () => {
           <p>Specific gender, age range and top locations</p>
         </header>
         <div class="body">
-          <div class="data-card"></div>
-          <div class="data-card"></div>
-          <div class="data-card"></div>
+          <div v-for="item in 3" :key="item" class="data-card"><ComingSoon /></div>
         </div>
       </section>
 

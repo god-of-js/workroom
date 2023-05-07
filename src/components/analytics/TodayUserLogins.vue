@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import UiButton from '../ui/UiButton.vue'
+import ComingSoon from './ComingSoon.vue'
 import UiIcon from '../ui/UiIcon.vue'
 </script>
 
@@ -10,8 +11,9 @@ import UiIcon from '../ui/UiIcon.vue'
         <h2>Today’s user logins</h2>
         <UiIcon name="ThreeDots" />
       </div>
+      <ComingSoon />
+      <!-- TODO: add chart -->
     </div>
-    <!-- TODO: add chart -->
     <div class="view-full-report">
       <UiButton>View full report</UiButton>
     </div>
