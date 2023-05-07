@@ -46,6 +46,7 @@ const props = defineProps<Props>()
       }
     }
   }
+
   .trending-container {
     display: flex;
     align-items: center;

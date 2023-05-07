@@ -16,5 +16,7 @@ import TheTopNav from './components/layout/TheTopNav.vue'
 .app {
   min-height: 100vh;
   background: white;
+  position: relative;
+  padding-bottom: 72px;
 }
 </style>

@@ -33,6 +33,7 @@ const upcomingPremier = computed(() => route.query.upcomingPremier)
       <MovieTable
         table-title="Collection of all movies"
         :is-trending="isTrending"
+        align-footer-to-center
         :is-upcoming-premier="upcomingPremier"
         table-sub-title="Keep track of all the movies on moviebox"
         footer-btn-text="Load More"

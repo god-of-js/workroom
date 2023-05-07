@@ -13,6 +13,10 @@ import TheLogo from './TheLogo.vue'
 <style lang="scss" scoped>
 footer {
   height: 72px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: #000000;
   display: flex;
   justify-content: center;

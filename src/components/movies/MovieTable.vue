@@ -16,6 +16,7 @@ interface Props {
   isUpcomingPremier?: boolean
   categoryFilter?: string[]
   hideSearch?: boolean
+  alignFooterToCenter?: boolean;
 }
 const props = defineProps<Props>()
 const headers = [
@@ -99,7 +100,7 @@ const dataList = computed(() => {
       </div>
     </template>
     <template #footer v-if="!!props.footerBtnText">
-      <div class="table-footer">
+      <div :class="['table-footer', { center: props.alignFooterToCenter}]">
         <UiButton>{{ props.footerBtnText }}</UiButton>
       </div>
     </template>
@@ -122,5 +123,9 @@ const dataList = computed(() => {
 .table-footer {
   display: flex;
   justify-content: flex-end;
+
+  &.center {
+    justify-content: center;
+  }
 }
 </style>
