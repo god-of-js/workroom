@@ -113,10 +113,9 @@ const dataList = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-
 a {
-    text-decoration: none;
-  }
+  text-decoration: none;
+}
 
 .action-btn-container {
   display: flex;

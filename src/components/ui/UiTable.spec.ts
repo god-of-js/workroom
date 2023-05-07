@@ -20,7 +20,7 @@ const headers: Header[] = [
   }
 ]
 
-const data: TableRowData[] = movies;
+const data: TableRowData[] = movies
 const props = {
   headers,
   data,
@@ -31,7 +31,7 @@ const props = {
 describe('src/components/ui/UiTable.vue', () => {
   it('Headers are rendered', async () => {
     const wrapper = mount(UiTable, {
-      props,
+      props
     })
 
     const firstHeader = wrapper.findAll('th')[0]

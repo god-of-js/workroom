@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@types/chart.js": "^2.9.37",
     "chart.js": "^3.9.1",
     "pinia": "^2.0.35",
     "sass": "^1.62.1",
