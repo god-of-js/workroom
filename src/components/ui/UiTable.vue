@@ -63,6 +63,7 @@ const tableData = computed(() => {
         icon-name="Search"
         placeholder="Search"
       />
+      <slot name="header-right" />
     </header>
     <div class="table-container">
       <table>

@@ -56,16 +56,15 @@ const props = defineProps<Props>()
       color: #000000;
 
       .border-bottom {
-
-      background: linear-gradient(
-        273.64deg,
-        #35c3f3 11.27%,
-        #8b9fe8 36.72%,
-        #e681d8 61.72%,
-        #ffa9a4 82.79%,
-        #fed2ce 107.29%,
-        #fed2ce 107.29%
-      );
+        background: linear-gradient(
+          273.64deg,
+          #35c3f3 11.27%,
+          #8b9fe8 36.72%,
+          #e681d8 61.72%,
+          #ffa9a4 82.79%,
+          #fed2ce 107.29%,
+          #fed2ce 107.29%
+        );
       }
     }
   }

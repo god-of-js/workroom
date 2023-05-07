@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+import { readFile } from '@/helpers/index'
 
 interface Props {
   img: string | File
@@ -15,20 +16,6 @@ watchEffect(() => {
   }
   avatar.value = props.img
 })
-
-function readFile(file: File) {
-  const reader = new FileReader()
-  reader.readAsDataURL(file)
-  let fileUrl: string | null = null
-  return new Promise((resolve) => {
-    reader.onload = () => {
-      fileUrl = reader.result as string
-      resolve(reader.result)
-    }
-  }).then(() => {
-    return (fileUrl as string) || null
-  })
-}
 </script>
 
 <template>

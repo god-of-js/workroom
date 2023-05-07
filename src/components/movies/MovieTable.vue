@@ -14,6 +14,8 @@ interface Props {
   isMini?: boolean
   footerBtnText?: string
   isUpcomingPremier?: boolean
+  categoryFilter?: string[]
+  hideSearch?: boolean
 }
 const props = defineProps<Props>()
 const headers = [
@@ -58,15 +60,17 @@ const headers = [
 })
 
 const dataList = computed(() => {
+  if (props.categoryFilter)
+    return movies.filter(({ category }) => {
+      return category.some((cat) => props.categoryFilter.includes(cat))
+    })
+
   if (props.isTrending) return movies.filter(({ isTrending }) => isTrending)
 
   if (props.isUpcomingPremier) return movies.filter(({ isUpcomingPremier }) => isUpcomingPremier)
+
   return movies
 })
-
-function viewMovie(index: number) {
-  router.push(`/movies/${index}`)
-}
 </script>
 
 <template>
@@ -76,7 +80,7 @@ function viewMovie(index: number) {
     :tableTitle="props.tableTitle"
     :tableSubTitle="props.tableSubTitle"
     :is-mini="props.isMini"
-    :fieldsToSearch="['name', 'categories', 'owner']"
+    :fieldsToSearch="props.hideSearch ? undefined : ['name', 'categories', 'owner']"
   >
     <template #name="{ data }">
       <UserNameWithAvatar :avatar="data.avatar" :name="data.name" />
@@ -87,7 +91,7 @@ function viewMovie(index: number) {
     <template #popularity="{ data }">
       <TrendStat :isTrending="data.isTrending" :popularity="data.popularity" />
     </template>
-    <template #actions="{data}">
+    <template #actions="{ data }">
       <div class="action-btn-container">
         <router-link :to="`/movies/${data.index}`">
           <UiButton>View</UiButton>
@@ -107,7 +111,7 @@ function viewMovie(index: number) {
   display: flex;
   justify-content: flex-end;
 
-  a{
+  a {
     text-decoration: none;
   }
 
