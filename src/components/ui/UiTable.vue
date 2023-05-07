@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import UiIcon from './UiIcon.vue'
+import UiInput from './UiInput.vue'
 
 interface Header {
   title: string
@@ -9,18 +10,39 @@ interface Header {
   isSlot?: boolean
   isCheckable?: boolean
 }
-
 interface Props {
   headers: Header[]
   data: Record<string, unknown>
-  isSearchable?: boolean
   tableTitle: string
   tableSubTitle: string
+  fieldsToSearch?: string[]
+  isMini?: boolean
 }
 const props = defineProps<Props>()
+const searchTerm = ref(null)
 
 const tableData = computed(() => {
-  return props.data
+  if (!searchTerm.value || !props.fieldsToSearch) {
+    if (props.isMini) return props.data.slice(0, 4)
+
+    return props.data
+  }
+
+  const filteredData = props.data.filter((item: Record<string, unknown>) => {
+    return props.fieldsToSearch?.some((key) => {
+      const value = item[key]
+      if (typeof value === 'string') {
+        return value.toLowerCase().includes(searchTerm.value.toLowerCase())
+      } else if (Array.isArray(value)) {
+        return value.some((v) => v.toLowerCase().includes(searchTerm.value.toLowerCase()))
+      }
+      return false
+    })
+  })
+
+  if (props.isMini) return filteredData.slice(0, 4)
+
+  return filteredData
 })
 </script>
 
@@ -35,6 +57,12 @@ const tableData = computed(() => {
           {{ props.tableSubTitle }}
         </p>
       </div>
+      <UiInput
+        v-if="props.fieldsToSearch"
+        v-model="searchTerm"
+        icon-name="Search"
+        placeholder="Search"
+      />
     </header>
     <div class="table-container">
       <table>
@@ -59,11 +87,37 @@ const tableData = computed(() => {
           </tr>
         </tbody>
       </table>
+      <footer v-if="$slots.footer">
+        <slot name="footer" />
+      </footer>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  h3 {
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    margin-bottom: 4px;
+  }
+  p {
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #6a6a6a;
+  }
+}
 .table-container {
   border: 1px solid #e0e0e0;
   overflow: hidden;
@@ -130,5 +184,10 @@ table {
       background-color: #ffffff;
     }
   }
+}
+footer {
+  background: #f5f5f5;
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
 }
 </style>

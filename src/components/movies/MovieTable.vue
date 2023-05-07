@@ -11,6 +11,9 @@ interface Props {
   tableTitle: string
   tableSubTitle: string
   isTrending?: boolean
+  isMini?: boolean
+  footerBtnText?: string
+  isUpcomingPremier?: boolean
 }
 const props = defineProps<Props>()
 
@@ -50,14 +53,15 @@ const headers = [
     isSlot: true
   }
 ].filter(({ key }) => {
-  if (props.isTrending && key === 'popularity') return false;
+  if (props.isMini && key === 'popularity') return false
 
-  return true;
+  return true
 })
 
 const dataList = computed(() => {
   if (props.isTrending) return movies.filter(({ isTrending }) => isTrending)
 
+  if (props.isUpcomingPremier) return movies.filter(({ isUpcomingPremier }) => isUpcomingPremier)
   return movies
 })
 </script>
@@ -68,6 +72,8 @@ const dataList = computed(() => {
     :headers="headers"
     :tableTitle="props.tableTitle"
     :tableSubTitle="props.tableSubTitle"
+    :is-mini="props.isMini"
+    :fieldsToSearch="['name', 'categories', 'owner']"
   >
     <template #name="{ data }">
       <UserNameWithAvatar :avatar="data.avatar" :name="data.name" />
@@ -79,13 +85,29 @@ const dataList = computed(() => {
       <TrendStat :isTrending="data.isTrending" :popularity="data.popularity" />
     </template>
     <template #actions>
-      <UiButton class="action-btn">View</UiButton>
+      <div class="action-btn-container">
+        <UiButton>View</UiButton>
+      </div>
+    </template>
+    <template #footer v-if="!!props.footerBtnText">
+      <div class="table-footer">
+        <UiButton>{{ props.footerBtnText }}</UiButton>
+      </div>
     </template>
   </UiTable>
 </template>
 
 <style lang="scss" scoped>
-.action-btn {
-  width: 63px;
+.action-btn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    width: 63px;
+  }
+}
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

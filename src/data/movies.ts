@@ -22,6 +22,7 @@ export default [
     owner: 'Sony Entertainment',
     premierDate: '21th May, 2022',
     isTrending: true,
+    isUpcomingPremier: true,
     popularity: 6
   },
   {
@@ -66,6 +67,7 @@ export default [
     owner: 'Sony Entertainment',
     premierDate: '12th May, 2022',
     isTrending: true,
+    isUpcomingPremier: true,
     popularity: 4
   },
   {
@@ -77,6 +79,7 @@ export default [
     owner: 'Sony Entertainment',
     premierDate: '4th July, 2012',
     isTrending: true,
+    isUpcomingPremier: true,
     popularity: 9
   },
   {
@@ -88,6 +91,7 @@ export default [
     owner: 'Sony Entertainment',
     premierDate: '14th June, 2012',
     isTrending: false,
+    isUpcomingPremier: true,
     popularity: 4
   },
   {
