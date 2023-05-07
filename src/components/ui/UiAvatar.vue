@@ -9,9 +9,9 @@ const props = defineProps<Props>()
 
 const avatar = ref<string>()
 
-watchEffect(() => {
+watchEffect(async () => {
   if (props.img instanceof File) {
-    avatar.value = readFile(props.img)
+    avatar.value = (await readFile(props.img)) as string
     return
   }
   avatar.value = props.img

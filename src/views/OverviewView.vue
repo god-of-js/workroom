@@ -20,6 +20,7 @@ import ThePageHeader from '@/components/layout/ThePageHeader.vue'
         table-sub-title="Keep track of the upcoming movie premieres"
         is-mini
         footer-btn-text="View all upcoming premieres"
+        footerBtnLink="/movies?upcomingPremier=true"
       />
       <MovieTable
         isTrending
@@ -27,6 +28,7 @@ import ThePageHeader from '@/components/layout/ThePageHeader.vue'
         table-sub-title="Keep track of the trending movies on moviebox"
         is-mini
         footer-btn-text="View all Trending movies"
+        footerBtnLink="/movies?trending=true"
       />
     </div>
   </div>

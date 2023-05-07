@@ -3,26 +3,30 @@ import { computed, ref } from 'vue'
 import UiIcon from './UiIcon.vue'
 import UiInput from './UiInput.vue'
 
-interface Header {
+export interface Header {
   title: string
   key: string
-  isSortable: boolean
+  isSortable?: boolean
   isSlot?: boolean
   isCheckable?: boolean
 }
-interface Props {
+export interface TableRowData {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
+}
+export interface Props {
   headers: Header[]
-  data: Record<string, unknown>
+  data: TableRowData[]
   tableTitle: string
   tableSubTitle: string
   fieldsToSearch?: string[]
   isMini?: boolean
 }
 const props = defineProps<Props>()
-const searchTerm = ref(null)
+const searchTerm = ref<string | null>(null)
 
 const tableData = computed(() => {
-  if (!searchTerm.value || !props.fieldsToSearch) {
+  if (!searchTerm.value) {
     if (props.isMini) return props.data.slice(0, 4)
 
     return props.data
@@ -32,9 +36,9 @@ const tableData = computed(() => {
     return props.fieldsToSearch?.some((key) => {
       const value = item[key]
       if (typeof value === 'string') {
-        return value.toLowerCase().includes(searchTerm.value.toLowerCase())
+        return value.toLowerCase().includes(searchTerm.value?.toLowerCase()!)
       } else if (Array.isArray(value)) {
-        return value.some((v) => v.toLowerCase().includes(searchTerm.value.toLowerCase()))
+        return value.some((v) => v.toLowerCase().includes(searchTerm.value?.toLowerCase()))
       }
       return false
     })

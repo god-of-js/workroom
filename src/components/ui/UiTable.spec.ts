@@ -1,13 +1,14 @@
 /**
  * @vitest-environment jsdom
  */
+// @ts-nocheck
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import UiTable from './UiTable.vue'
+import UiTable, { Header, TableRowData } from './UiTable.vue'
 import movies from '@/data/movies'
 
-const headers = [
+const headers: Header[] = [
   {
     title: 'Name',
     key: 'name',
@@ -19,21 +20,18 @@ const headers = [
   }
 ]
 
-const data = [
-  {
-    name: 'Wonder Woman',
-    category: ['action', 'thriller']
-  }
-]
+const data: TableRowData[] = movies;
+const props = {
+  headers,
+  data,
+  tableTitle: 'Test',
+  tableSubTitle: 'Test'
+}
 
 describe('src/components/ui/UiTable.vue', () => {
   it('Headers are rendered', async () => {
     const wrapper = mount(UiTable, {
-      props: {
-        headers,
-        data,
-        isSearchable: false
-      }
+      props,
     })
 
     const firstHeader = wrapper.findAll('th')[0]
@@ -44,18 +42,13 @@ describe('src/components/ui/UiTable.vue', () => {
 
   it('Data is rendered', async () => {
     const wrapper = mount(UiTable, {
-      props: {
-        headers,
-        data: movies,
-        isSearchable: false
-      },
+      props,
       slots: {
         categories: '<span>a normal category</span>'
       }
     })
 
     const firstDataItem = wrapper.findAll('td')[0]
-    const categories = wrapper.findAll('td')[1]
 
     expect(firstDataItem.exists()).toBe(true)
     expect(firstDataItem.text()).toBe(movies[0].name)

@@ -30,8 +30,8 @@ footer {
   line-height: 19px;
   color: #6a6a6a;
 
-  ::v-deep .colored-text,
-  ::v-deep .admin-text {
+  :deep(.colored-text),
+  :deep(.admin-text) {
     font-size: 16px;
     line-height: 19px;
   }

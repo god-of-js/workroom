@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import UiTable from '../ui/UiTable.vue'
+import UiTable, { Header } from '../ui/UiTable.vue'
 import movies from '@/data/movies'
 import UserNameWithAvatar from '../user/UserNameWithAvatar.vue'
 import TrendStat from '../analytics/TrendStat.vue'
@@ -16,10 +16,11 @@ interface Props {
   isUpcomingPremier?: boolean
   categoryFilter?: string[]
   hideSearch?: boolean
-  alignFooterToCenter?: boolean;
+  alignFooterToCenter?: boolean
+  footerBtnLink?: string
 }
 const props = defineProps<Props>()
-const headers = [
+const headers: Header[] = [
   {
     title: 'Name',
     key: 'name',
@@ -61,10 +62,11 @@ const headers = [
 })
 
 const dataList = computed(() => {
-  if (props.categoryFilter)
+  if (props.categoryFilter) {
     return movies.filter(({ category }) => {
-      return category.some((cat) => props.categoryFilter.includes(cat))
+      return category.some((cat) => props.categoryFilter?.includes(cat))
     })
+  }
 
   if (props.isTrending) return movies.filter(({ isTrending }) => isTrending)
 
@@ -100,21 +102,25 @@ const dataList = computed(() => {
       </div>
     </template>
     <template #footer v-if="!!props.footerBtnText">
-      <div :class="['table-footer', { center: props.alignFooterToCenter}]">
-        <UiButton>{{ props.footerBtnText }}</UiButton>
+      <div :class="['table-footer', { center: props.alignFooterToCenter }]">
+        <router-link v-if="props.footerBtnLink" :to="props.footerBtnLink"
+          ><UiButton>{{ props.footerBtnText }}</UiButton></router-link
+        >
+        <UiButton v-else>{{ props.footerBtnText }}</UiButton>
       </div>
     </template>
   </UiTable>
 </template>
 
 <style lang="scss" scoped>
+
+a {
+    text-decoration: none;
+  }
+
 .action-btn-container {
   display: flex;
   justify-content: flex-end;
-
-  a {
-    text-decoration: none;
-  }
 
   button {
     width: 63px;

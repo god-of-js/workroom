@@ -13,8 +13,8 @@ import YogiBear from '../assets/images/yogi-bear.jpg'
 import Zootopia from '../assets/images/zootopia.jpg'
 
 import BlackWidowBannerImmage from '../assets/images/black-widdow-banner-image.jpg'
-
-export default [
+import Movie from '@/types/Movie'
+const movies: Movie[] = [
   {
     name: 'Avengers black window',
     category: ['action', 'blockbuster'],
@@ -191,3 +191,5 @@ export default [
   ...item,
   index: `${index}`
 }))
+
+export default movies

@@ -21,8 +21,8 @@ const tabs = [
 ]
 const route = useRoute()
 
-const isTrending = computed(() => route.query.trending)
-const upcomingPremier = computed(() => route.query.upcomingPremier)
+const isTrending = computed(() => !!route.query.trending)
+const upcomingPremier = computed(() => !!route.query.upcomingPremier)
 </script>
 
 <template>

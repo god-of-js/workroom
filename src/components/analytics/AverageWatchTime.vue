@@ -6,7 +6,10 @@ import UiIcon from '../ui/UiIcon.vue'
   <div class="todays-user-logins">
     <div class="body">
       <div class="title-container">
-        <h2>Today’s user logins</h2>
+        <div>
+          <h2>Average watch time</h2>
+          <p>This tracks the average watch by users every month</p>
+        </div>
         <UiIcon name="ThreeDots" />
       </div>
     </div>
@@ -28,9 +31,19 @@ import UiIcon from '../ui/UiIcon.vue'
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 4px;
 
       color: #000000;
-      line-height: 20px;
+    }
+
+    p {
+      font-family: 'Helvetica Neue';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      color: #6a6a6a;
     }
 
     svg {

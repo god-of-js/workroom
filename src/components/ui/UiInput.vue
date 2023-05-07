@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import UiIcon from './UiIcon.vue'
+import UiIcon, { Icons } from './UiIcon.vue'
 
 interface Props {
-  iconName?: string
+  iconName?: Icons
   placeholder: string
   modelValue: string | null
 }
@@ -18,7 +18,7 @@ function update(e: Event) {
 
 <template>
   <div :class="[{ hasIconLeft: !!props.iconName }, 'input-container']">
-    <UiIcon :name="props.iconName" class="left-icon" />
+    <UiIcon v-if="props.iconName" :name="props.iconName" class="left-icon" />
     <input type="text" :value="props.modelValue" :placeholder="props.placeholder" @input="update" />
   </div>
 </template>

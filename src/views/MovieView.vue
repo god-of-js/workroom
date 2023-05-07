@@ -15,7 +15,7 @@ const route = useRoute()
 const movie = computed(() => {
   return movies.find(({ index }) => index === route.params.movieIndex)
 })
-const bannerImg = ref<string>()
+const bannerImg = ref<string | null>()
 
 const moviePropertiesHeaders = [
   {
@@ -71,9 +71,10 @@ const insightsData = [
     likes: '34,056,147'
   }
 ]
-watchEffect(() => {
-  if (movie.value?.avatar instanceof File) {
-    bannerImg.value = readFile(movie.value?.bannerImg)
+watchEffect(async () => {
+  if (!movie.value?.bannerImg) return
+  if (movie.value.bannerImg instanceof File) {
+    bannerImg.value = await readFile(movie.value?.bannerImg)
     return
   }
   bannerImg.value = movie.value?.bannerImg
@@ -82,14 +83,15 @@ watchEffect(() => {
 
 <template>
   <div class="movies-view">
-    <ThePageHeader :name="movie?.name" />
+    <ThePageHeader v-if="movie" :name="movie.name" />
     <div class="page-body">
       <section class="banner-section">
-        <img :src="bannerImg" alt="banner image" />
+        <img v-if="bannerImg" :src="bannerImg" alt="banner image" />
         <AverageWatchTime class="average-watch-time" />
       </section>
 
       <UiTable
+        v-if="movie"
         :headers="moviePropertiesHeaders"
         :data="[movie]"
         table-title="Movie Properties"
@@ -99,7 +101,7 @@ watchEffect(() => {
           <MovieCategories :categories="data.category" />
         </template>
         <template #header-right>
-          <TrendStat is-trending :popularity="movie?.popularity" />
+          <TrendStat v-if="movie" is-trending :popularity="movie.popularity" />
         </template>
       </UiTable>
       <UiTable
