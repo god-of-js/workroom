@@ -8,6 +8,7 @@ import ArrowDown from './icons/arrow-down.svg'
 import VerticalDash from './icons/vertical-dash.svg'
 import Trend from './icons/trend.svg'
 import Search from './icons/search.svg'
+import Close from './icons/close.svg'
 
 const icons = {
   Notification,
@@ -18,7 +19,8 @@ const icons = {
   ArrowDown,
   VerticalDash,
   Trend,
-  Search
+  Search,
+  Close
 }
 export type Icons = keyof typeof icons
 interface Props {
