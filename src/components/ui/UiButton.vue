@@ -20,6 +20,7 @@ button {
   padding: 8px;
   gap: 8px;
   height: 34px;
+
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   font-family: 'Helvetica Neue';
@@ -31,5 +32,6 @@ button {
   color: #000000;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 </style>

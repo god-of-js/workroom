@@ -5,6 +5,8 @@ import Filter from './icons/filter.svg'
 import Export from './icons/export.svg'
 import ThreeDots from './icons/three-dots.svg'
 import ArrowDown from './icons/arrow-down.svg'
+import VerticalDash from './icons/vertical-dash.svg'
+import Trend from './icons/trend.svg'
 
 const icons = {
   Notification,
@@ -12,7 +14,9 @@ const icons = {
   Filter,
   Export,
   ThreeDots,
-  ArrowDown
+  ArrowDown,
+  VerticalDash,
+  Trend
 }
 export type Icons = keyof typeof icons
 interface Props {

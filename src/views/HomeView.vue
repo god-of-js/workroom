@@ -28,7 +28,7 @@ import MovieTable from '@/components/movies/MovieTable.vue'
         <AverageWatchTime class="average-watch-time" />
       </div>
 
-      <MovieTable />
+      <MovieTable isTrending />
     </div>
   </main>
 </template>

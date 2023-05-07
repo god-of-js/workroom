@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 interface Props {
   img: string | File

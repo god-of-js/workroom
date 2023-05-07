@@ -13,5 +13,6 @@ import TheTopNav from './components/layout/TheTopNav.vue'
 <style lang="scss">
 .app {
   min-height: 100vh;
+  background: white;
 }
 </style>

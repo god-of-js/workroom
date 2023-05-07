@@ -38,6 +38,8 @@ import UiIcon from '../ui/UiIcon.vue'
       font-weight: 500;
       font-size: 16px;
       line-height: 20px;
+
+      color: #000000;
     }
 
     svg {

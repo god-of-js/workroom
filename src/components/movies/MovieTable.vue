@@ -1,15 +1,26 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import UiTable from '../ui/UiTable.vue'
 import movies from '@/data/movies'
-import UiPill from '../ui/UiPill.vue'
 import UserNameWithAvatar from '../user/UserNameWithAvatar.vue'
+import TrendStat from '../analytics/TrendStat.vue'
+import MovieCategories from './MovieCategories.vue'
+import UiButton from '../ui/UiButton.vue'
+
+interface Props {
+  tableTitle: string
+  tableSubTitle: string
+  isTrending?: boolean
+}
+const props = defineProps<Props>()
 
 const headers = [
   {
     title: 'Name',
     key: 'name',
     isSortable: true,
-    isSlot: true
+    isSlot: true,
+    isCheckable: true
   },
   {
     title: 'Category',
@@ -18,7 +29,8 @@ const headers = [
   },
   {
     title: 'Popularity/Interests',
-    key: 'popularity'
+    key: 'popularity',
+    isSlot: true
   },
   {
     title: 'Watchlists',
@@ -31,28 +43,49 @@ const headers = [
   {
     title: 'Release date',
     key: 'premierDate'
+  },
+  {
+    title: '',
+    key: 'actions',
+    isSlot: true
   }
-]
+].filter(({ key }) => {
+  if (props.isTrending && key === 'popularity') return false;
+
+  return true;
+})
+
+const dataList = computed(() => {
+  if (props.isTrending) return movies.filter(({ isTrending }) => isTrending)
+
+  return movies
+})
 </script>
 
 <template>
-  <UiTable :data="movies" :headers="headers">
+  <UiTable
+    :data="dataList"
+    :headers="headers"
+    :tableTitle="props.tableTitle"
+    :tableSubTitle="props.tableSubTitle"
+  >
     <template #name="{ data }">
       <UserNameWithAvatar :avatar="data.avatar" :name="data.name" />
     </template>
     <template #categories="{ data }">
-      <div class="categories-container">
-        <UiPill v-for="(category, index) in data.category" :key="index">
-          {{ category }}
-        </UiPill>
-      </div>
+      <MovieCategories :categories="data.category" />
+    </template>
+    <template #popularity="{ data }">
+      <TrendStat :isTrending="data.isTrending" :popularity="data.popularity" />
+    </template>
+    <template #actions>
+      <UiButton class="action-btn">View</UiButton>
     </template>
   </UiTable>
 </template>
 
 <style lang="scss" scoped>
-.categories-container {
-  display: flex;
-  gap: 8px;
+.action-btn {
+  width: 63px;
 }
 </style>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UiButton from '../ui/UiButton.vue'
 import UiIcon from '../ui/UiIcon.vue'
 </script>
 
@@ -29,6 +28,8 @@ import UiIcon from '../ui/UiIcon.vue'
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
+
+      color: #000000;
       line-height: 20px;
     }
 
