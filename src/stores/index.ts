@@ -17,7 +17,7 @@ export const useAppStore = defineStore({
   actions: {
     updateMovie(updatedMovie: Movie) {
       const oldVersionOfMovie = this.movies.find(({ index }) => index === updatedMovie.index)
-      Object.assign(oldVersionOfMovie, updatedMovie)
+      Object.assign(oldVersionOfMovie!, updatedMovie)
     }
   }
 })
