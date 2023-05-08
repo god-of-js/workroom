@@ -12,10 +12,12 @@ const props = defineProps<Props>()
   <header>
     <h1>{{ props.name }}</h1>
     <div class="btn-container">
-      <UiButton>
-        <UiIcon name="Filter" />
-        Filter</UiButton
-      >
+      <slot>
+        <UiButton>
+          <UiIcon name="Filter" />
+          Filter</UiButton
+        >
+      </slot>
       <UiButton>
         <UiIcon name="Export" />
 

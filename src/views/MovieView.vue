@@ -12,6 +12,8 @@ import UiTable from '@/components/ui/UiTable.vue'
 import MovieCategories from '@/components/movies/MovieCategories.vue'
 import MovieTable from '@/components/movies/MovieTable.vue'
 import TrendStat from '@/components/analytics/TrendStat.vue'
+import UiButton from '@/components/ui/UiButton.vue'
+import UiIcon from '@/components/ui/UiIcon.vue'
 
 const route = useRoute()
 const store = useAppStore()
@@ -19,7 +21,7 @@ const movie = computed(() => {
   return store.movie(route.params.movieIndex as string)
 })
 const bannerImg = ref<string | null>()
-const isUpdateMovieVisible = ref(true)
+const isUpdateMovieVisible = ref(false)
 
 const moviePropertiesHeaders = [
   {
@@ -87,7 +89,12 @@ watchEffect(async () => {
 
 <template>
   <div class="movies-view">
-    <ThePageHeader v-if="movie" :name="movie.name" />
+    <ThePageHeader v-if="movie" :name="movie.name">
+      <UiButton @click="isUpdateMovieVisible = true">
+        <UiIcon name="Edit" />
+        Update Movie</UiButton
+      >
+    </ThePageHeader>
     <div class="page-body">
       <section class="banner-section">
         <img v-if="bannerImg" :src="bannerImg" alt="banner image" />
@@ -133,7 +140,7 @@ watchEffect(async () => {
       />
     </div>
     <UiOverlay v-model="isUpdateMovieVisible">
-      <UpdateMovie v-if="movie" :movie="movie" @close="isUpdateMovieVisible = false"  />
+      <UpdateMovie v-if="movie" :movie="movie" @close="isUpdateMovieVisible = false" />
     </UiOverlay>
   </div>
 </template>

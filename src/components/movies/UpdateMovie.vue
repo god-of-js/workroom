@@ -19,7 +19,7 @@ const emit = defineEmits<{
 
 const store = useAppStore()
 
-const formData = shallowRef({...props.movie})
+const formData = shallowRef({ ...props.movie })
 const rules = {
   name: [required],
   owner: [required]
