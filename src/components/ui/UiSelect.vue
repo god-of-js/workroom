@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import UiField from './UiField.vue'
 
 export interface SelectOption {
   label: string
@@ -119,7 +120,6 @@ function toggleOptionsVisibility() {
 <style lang="scss" scoped>
 .ui-select {
   position: relative;
-
   min-height: 3rem;
 }
 
@@ -132,11 +132,7 @@ label.has-errors {
   align-items: center;
   padding: 16px;
   gap: 8px;
-
   height: 46px;
-
-  /* Brand Colors/Moviebox Highlight/50% */
-
   border: 1px solid #e0e0e0;
   border-radius: 8px;
 }
@@ -144,14 +140,6 @@ label.has-errors {
 .select-label {
   padding: 10px 14px;
   width: calc(100% - px(36));
-}
-
-.search-label {
-  display: flex;
-  flex-grow: 1;
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  background: #ffffff;
-  cursor: default;
 }
 
 .options {

@@ -14,6 +14,7 @@ import Zootopia from '../assets/images/zootopia.jpg'
 
 import BlackWidowBannerImmage from '../assets/images/black-widdow-banner-image.jpg'
 import Movie from '@/types/Movie'
+
 const movies: Movie[] = [
   {
     name: 'Avengers black window',

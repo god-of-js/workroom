@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import UiField from './UiField.vue'
 import UiIcon, { Icons } from './UiIcon.vue'
 
 interface Props {
   iconName?: Icons
-  placeholder: string
+  placeholder?: string
   modelValue: string | null
+  name?: string
+  label?: string
 }
 const props = defineProps<Props>()
 const emit = defineEmits<{
@@ -17,10 +20,17 @@ function update(e: Event) {
 </script>
 
 <template>
-  <div :class="[{ hasIconLeft: !!props.iconName }, 'input-container']">
-    <UiIcon v-if="props.iconName" :name="props.iconName" class="left-icon" />
-    <input type="text" :value="props.modelValue" :placeholder="props.placeholder" @input="update" />
-  </div>
+  <UiField :label="props.label" :name="props.name">
+    <div :class="[{ hasIconLeft: !!props.iconName }, 'input-container']">
+      <UiIcon v-if="props.iconName" :name="props.iconName" class="left-icon" />
+      <input
+        type="text"
+        :value="props.modelValue"
+        :placeholder="props.placeholder"
+        @input="update"
+      />
+    </div>
+  </UiField>
 </template>
 
 <style scoped lang="scss">
@@ -42,7 +52,7 @@ function update(e: Event) {
     align-items: center;
     padding: 16px;
     gap: 8px;
-    width: 276px;
+    width: 100%;
     height: 46px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;

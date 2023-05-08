@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, watchEffect, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import movies from '@/data/movies'
+import { useAppStore } from '@/stores'
 import ComingSoon from '@/components/analytics/ComingSoon.vue'
 import { readFile } from '@/helpers/index'
+import UpdateMovie from '@/components/movies/UpdateMovie.vue'
+import UiOverlay from '@/components/ui/UiOverlay.vue'
 import ThePageHeader from '@/components/layout/ThePageHeader.vue'
 import AverageWatchTime from '@/components/analytics/AverageWatchTime.vue'
 import UiTable from '@/components/ui/UiTable.vue'
@@ -12,11 +14,12 @@ import MovieTable from '@/components/movies/MovieTable.vue'
 import TrendStat from '@/components/analytics/TrendStat.vue'
 
 const route = useRoute()
-
+const store = useAppStore()
 const movie = computed(() => {
-  return movies.find(({ index }) => index === route.params.movieIndex)
+  return store.movie(route.params.movieIndex as string)
 })
 const bannerImg = ref<string | null>()
+const isUpdateMovieVisible = ref(true)
 
 const moviePropertiesHeaders = [
   {
@@ -129,6 +132,9 @@ watchEffect(async () => {
         :category-filter="movie?.category"
       />
     </div>
+    <UiOverlay v-model="isUpdateMovieVisible">
+      <UpdateMovie v-if="movie" :movie="movie" @close="isUpdateMovieVisible = false"  />
+    </UiOverlay>
   </div>
 </template>
 

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import MovieTable from '@/components/movies/MovieTable.vue'
-import NewMovie from '@/components/movies/NewMovie.vue'
 import ThePageHeader from '@/components/layout/ThePageHeader.vue'
 import UiTabs from '@/components/ui/UiTabs.vue'
-import UiOverlay from '@/components/ui/UiOverlay.vue'
 
 const tabs = [
   {
@@ -22,8 +20,6 @@ const tabs = [
   }
 ]
 const route = useRoute()
-
-const isAddNewMovieVisible = ref(false)
 
 const isTrending = computed(() => !!route.query.trending)
 const upcomingPremier = computed(() => !!route.query.upcomingPremier)
@@ -43,9 +39,6 @@ const upcomingPremier = computed(() => !!route.query.upcomingPremier)
         footer-btn-text="Load More"
       />
       <!-- TODO: work in progress -->
-      <UiOverlay v-model="isAddNewMovieVisible">
-        <NewMovie />
-      </UiOverlay>
     </div>
   </div>
 </template>

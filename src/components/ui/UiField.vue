@@ -13,7 +13,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="ui-field">
-    {{ label }}
     <label v-if="label" :for="name" class="ui-label">
       {{ label }}
     </label>
@@ -26,16 +25,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 .ui-label {
-  font-style: normal;
   text-transform: uppercase;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 20px;
-
-  color: #aaaaaa;
+  color: #000000;
   margin-bottom: 4px;
-  display: block;
 }
 </style>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{
   disabled?: boolean
+  variant?: 'primary'
+  size?: 'lg'
 }>()
 const emit = defineEmits<{
   (e: 'click'): void
@@ -8,7 +10,11 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <button :disabled="props.disabled" @click="emit('click')">
+  <button
+    :disabled="props.disabled"
+    :class="{ primary: props.variant === 'primary', large: props.size === 'lg' }"
+    @click="emit('click')"
+  >
     <slot />
   </button>
 </template>
@@ -34,5 +40,10 @@ button {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+
+  &.large {
+    width: 100%;
+    height: 40px;
+  }
 }
 </style>

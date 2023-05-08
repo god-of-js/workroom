@@ -69,7 +69,7 @@ const autocomplete = computed(() => (props.autocomplete ? 'on' : undefined))
 .ui-form {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  gap: 8px;
 }
 
 .actions {

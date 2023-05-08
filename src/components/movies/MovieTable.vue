@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useAppStore } from '@/stores'
 import UiTable, { Header } from '../ui/UiTable.vue'
-import movies from '@/data/movies'
 import UserNameWithAvatar from '../user/UserNameWithAvatar.vue'
 import TrendStat from '../analytics/TrendStat.vue'
 import MovieCategories from './MovieCategories.vue'
@@ -20,6 +20,8 @@ interface Props {
   footerBtnLink?: string
 }
 const props = defineProps<Props>()
+const store = useAppStore()
+const movies = store.movies
 const headers: Header[] = [
   {
     title: 'Name',
