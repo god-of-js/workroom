@@ -25,5 +25,5 @@ onMounted(() => {
 })
 </script>
 <template>
-  <canvas ref="canvas" />
+  <canvas ref="canvasRef" />
 </template>
