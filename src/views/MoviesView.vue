@@ -38,7 +38,6 @@ const upcomingPremier = computed(() => !!route.query.upcomingPremier)
         table-sub-title="Keep track of all the movies on moviebox"
         footer-btn-text="Load More"
       />
-      <!-- TODO: work in progress -->
     </div>
   </div>
 </template>

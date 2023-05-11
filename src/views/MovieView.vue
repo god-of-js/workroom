@@ -196,8 +196,6 @@ watchEffect(async () => {
     gap: 32px;
     .data-card {
       height: 280px;
-      /* Brand Colors/Moviebox Highlight/50% */
-
       border: 1px solid #e0e0e0;
       border-radius: 8px;
     }
