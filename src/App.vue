@@ -9,10 +9,15 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style lang="scss">
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('./assets/fonts/Nunito_Sans/static/NunitoSans_10pt_Condensed-ExtraBold.ttf');
+}
 .app {
   min-height: 100vh;
   background: white;
   position: relative;
-  padding-bottom: 72px;
+  color: #000;
+  font-family: 'Nunito Sans', sans-serif;
 }
 </style>
