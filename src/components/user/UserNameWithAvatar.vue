@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UiAvatar from '../ui/UiAvatar.vue'
 
 interface Props {
   avatar: string | File
@@ -10,7 +9,7 @@ const props = defineProps<Props>()
 
 <template>
   <div class="profile">
-    <UiAvatar :img="props.avatar" />
+    <!-- <UiAvatar :img="props.avatar" /> -->
     <span>{{ props.name }}</span>
   </div>
 </template>

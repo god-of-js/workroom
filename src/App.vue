@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import TheFooter from './components/layout/TheFooter.vue'
-import TheTopNav from './components/layout/TheTopNav.vue'
 </script>
 
 <template>
   <main class="app">
-    <TheTopNav />
     <RouterView />
-    <TheFooter />
   </main>
 </template>
 
