@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardLayout from '../layouts/DashboardLayout.vue'
+import AuthLayout from '../layouts/AuthLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,14 +13,26 @@ const router = createRouter({
         {
           path: '',
           name: 'Dashboard',
-          component: () => import('@/views/DashboardView.vue')
+          component: () => import('@/views/dashboard/DashboardView.vue')
+        },
+        {
+          path: '/calendar',
+          name: 'CalendarView',
+          component: () => import('@/views/dashboard/CalendarView.vue')
         }
       ]
     },
     {
-      path: '/auth/register',
-      name: 'RegistrationView',
-      component: () => import('@/views/auth/RegistrationView.vue')
+      path: '/auth',
+      name: 'AuthLayout',
+      component: AuthLayout,
+      children: [
+        {
+          path: '/register',
+          name: 'RegistrationView',
+          component: () => import('@/views/auth/RegistrationView.vue')
+        }
+      ]
     }
   ]
 })
