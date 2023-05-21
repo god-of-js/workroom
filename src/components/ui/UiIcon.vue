@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import AirPlane from './icons/airplane.svg'
+import ArrowLeft from './icons/arrow-left.svg'
+import ArrowRight from './icons/arrow-right.svg'
 import Calendar from './icons/calendar.svg'
 import Chat from './icons/chat.svg'
 import Folder from './icons/folder.svg'
@@ -10,6 +12,8 @@ import Users from './icons/users.svg'
 
 const icons = {
   AirPlane,
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   Chat,
   Folder,
