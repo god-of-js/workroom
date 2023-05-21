@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useAppStore } from '@/stores'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const appStore = useAppStore();
+const appStore = useAppStore()
 const router = useRouter()
 
 const formData = ref({
   email: '',
   password: ''
 })
-const loading = ref(false);
+const loading = ref(false)
 
 function emailIsValid(email: string) {
   if (!email || email.trim() === '') {
@@ -40,13 +40,16 @@ const formIsValid = computed(() => {
 })
 
 function registerUser() {
-  loading.value = true;
-  appStore.createUser(formData.value).then(() => {
-    console.log('yep');
-    router.push({ name: 'CalendarView'})
-  }).finally(() => {
-    loading.value = false;
-  })
+  loading.value = true
+  appStore
+    .createUser(formData.value)
+    .then(() => {
+      console.log('yep')
+      router.push({ name: 'CalendarView' })
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 </script>
 
@@ -69,7 +72,13 @@ function registerUser() {
       <div class="mb-4">
         <router-link to="/" class="text-primary">Forgot password?</router-link>
       </div>
-      <v-btn block color="primary" size="large" type="submit" :loading="loading" :disabled="!formIsValid"
+      <v-btn
+        block
+        color="primary"
+        size="large"
+        type="submit"
+        :loading="loading"
+        :disabled="!formIsValid"
         >Sign up</v-btn
       >
     </form>

@@ -8,8 +8,8 @@ export const useAppStore = defineStore({
   actions: {
     createUser(userData: { email: string; password: string }) {
       return api.authenticateUser(userData.email, userData.password).then((data) => {
-        localStorage.setItem('uid', data.uid);
-      });
+        localStorage.setItem('uid', data.uid)
+      })
     }
   }
 })
