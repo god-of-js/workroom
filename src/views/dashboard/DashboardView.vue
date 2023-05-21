@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="home-view">
-    <v-btn> Button </v-btn>
-  </div>
+  <div class="home-view"></div>
 </template>
 
 <styled lang="scss" scoped>

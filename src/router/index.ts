@@ -11,7 +11,7 @@ const router = createRouter({
       component: DashboardLayout,
       children: [
         {
-          path: '',
+          path: '/',
           name: 'Dashboard',
           component: () => import('@/views/dashboard/DashboardView.vue')
         },

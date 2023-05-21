@@ -8,11 +8,11 @@ import Logo from '@/assets/logo.svg'
     <div class="auth-view__content">
       <div class="banner">
         <div class="logo-container">
-          <component :is="Logo" />
+          <Logo />
           <span class="app-title">Schedulo</span>
         </div>
         <h1>Your place to work Plan. Create. Control.</h1>
-        <component :is="AuthIllustration" />
+        <AuthIllustration />
       </div>
       <div class="form-container">
         <div class="form-container__inner">
