@@ -5,13 +5,21 @@ import TheSideBar from '@/components/layout/TheSideBar.vue'
 <template>
   <div id="dashboard-layout">
     <TheSideBar />
-    <router-view />
+    <div class="body-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 #dashboard-layout {
   background: #f4f9fd;
   height: 100vh;
+  display: flex;
+
+  .body-wrapper {
+    margin: 0px 100px 0 300px;
+    width: 100%;
+  }
 }
 </style>
