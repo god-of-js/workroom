@@ -9,6 +9,7 @@ dayjs.extend(weekOfYear)
 
 import CalenderWidgetDayItem from './CalendarWidgetDayItem.vue'
 import CalenderWidgetMonthNavigator from './CalendarWidgetMonthNavigator.vue'
+import CalendarWidgetWeekDays from './CalendarWidgetWeekDays.vue'
 
 interface Props {
   modelValue: Dayjs
@@ -16,11 +17,12 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits<{
   (e: 'update:modelValue', val: Dayjs): void
+  (e: 'trigger-with-date-clicked', val: Dayjs): void
 }>()
 
-const today = dayjs().format("YYYY-MM-DD")
+const today = dayjs().format('YYYY-MM-DD')
 const activeDate = computed(() => {
-  return props.modelValue;
+  return props.modelValue
 })
 
 const yearOfActiveDate = computed(() => {
@@ -101,11 +103,16 @@ function selectDate(date: Dayjs) {
 function getWeekday(date: Dayjs | string) {
   return dayjs(date).weekday()
 }
+
+function triggerWithDate(e: Dayjs) {
+  emit('trigger-with-date-clicked', e)
+}
 </script>
+
 <template>
   <div class="calendar">
     <CalenderWidgetMonthNavigator :selected-date="activeDate" @select-date="selectDate" />
-
+    <CalendarWidgetWeekDays />
     <ol class="days-grid">
       <CalenderWidgetDayItem
         v-for="(day, index) in visibleDays"
@@ -113,6 +120,7 @@ function getWeekday(date: Dayjs | string) {
         :day="day.date"
         :is-current-month="day.isCurrentMonth"
         :key="index"
+        @date-clicked="triggerWithDate"
       />
     </ol>
   </div>

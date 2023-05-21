@@ -4,13 +4,16 @@ const weekdays = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
 
 <template>
   <ul class="weekdays">
-    <li v-for="(weekday, index) in weekdays" :key="index">{{ weekday }}</li>
+    <li v-for="(weekday, index) in weekdays" :key="index">
+      <span>
+        {{ weekday }}
+      </span>
+    </li>
   </ul>
 </template>
 
 <style lang="scss" scoped>
 .weekdays {
-  margin-bottom: -5%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   list-style-type: none;
@@ -25,6 +28,13 @@ const weekdays = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
     line-height: 22px;
     color: #7d8592;
     border-radius: 4px;
+    margin-bottom: -60px;
+    padding: 8px;
+    span {
+      background: #f4f9fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
   }
 }
 </style>

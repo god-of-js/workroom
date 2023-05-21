@@ -1,5 +1,5 @@
 import db from './firebaseConfig'
-import { collection, addDoc, getDocs } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 
 class Api {
@@ -9,6 +9,7 @@ class Api {
       (userCredential) => userCredential.user
     )
   }
+
   private create(collectionName: string, data: unknown): Promise<unknown> {
     return addDoc(collection(db, collectionName), data)
   }
