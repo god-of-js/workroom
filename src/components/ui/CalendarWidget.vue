@@ -13,6 +13,7 @@ import CalendarWidgetWeekDays from './CalendarWidgetWeekDays.vue'
 
 interface Props {
   modelValue: Dayjs
+  data?: { date: string | Dayjs; name: string; [key: string]: unknown }[]
 }
 const props = defineProps<Props>()
 const emit = defineEmits<{
@@ -107,6 +108,10 @@ function getWeekday(date: Dayjs | string) {
 function triggerWithDate(e: Dayjs) {
   emit('trigger-with-date-clicked', e)
 }
+
+function getAllItemsWithSameDate(date: Dayjs) {
+  return props.data?.filter((item) => item.date === date.format('YYYY-MM-DD'))
+}
 </script>
 
 <template>
@@ -121,7 +126,13 @@ function triggerWithDate(e: Dayjs) {
         :is-current-month="day.isCurrentMonth"
         :key="index"
         @date-clicked="triggerWithDate"
-      />
+      >
+        <div v-if="props.data">
+          <div v-for="(item, index) in getAllItemsWithSameDate(day.date)" :key="index">
+            <slot :data="item" />
+          </div>
+        </div>
+      </CalenderWidgetDayItem>
     </ol>
   </div>
 </template>

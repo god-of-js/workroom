@@ -1,8 +1,8 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs'
 
 export default interface Event {
-    name: string;
-    date: Dayjs | string;
-    uid: string;
-    id: string
+  name: string
+  date: Dayjs | string
+  uid: string
+  id: string
 }

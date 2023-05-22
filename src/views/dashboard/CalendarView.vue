@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import Calendar from '@/components/ui/CalendarWidget.vue'
 import NewEvent from '@/components/events/NewEvent.vue'
+import { useAppStore } from '@/stores'
+import EventItem from '@/components/events/EventItem.vue'
 
+const appStore = useAppStore()
 const date = ref(dayjs())
 const newEventIsOpen = ref(false)
 const chosenDate = ref<null | Dayjs>()
@@ -20,6 +23,10 @@ watch(
     }
   }
 )
+
+onMounted(() => {
+  appStore.getEvents()
+})
 </script>
 
 <template>
@@ -29,7 +36,11 @@ watch(
       <NewEvent v-model="newEventIsOpen" :key="`${newEventIsOpen}`" :chosen-date="chosenDate" />
     </header>
 
-    <Calendar v-model="date" @trigger-with-date-clicked="addEvent" />
+    <Calendar v-model="date" @trigger-with-date-clicked="addEvent" :data="appStore.events">
+      <template #default="{ data }">
+        <EventItem :name="data.name" />
+      </template>
+    </Calendar>
   </div>
 </template>
 

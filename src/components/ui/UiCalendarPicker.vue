@@ -21,8 +21,8 @@ const value = computed({
 })
 
 function update(val: Dayjs) {
-  emit('update:model-value', val);
-  calendarIsOpen.value = false;
+  emit('update:model-value', val)
+  calendarIsOpen.value = false
 }
 </script>
 

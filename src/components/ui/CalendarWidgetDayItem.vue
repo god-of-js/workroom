@@ -36,6 +36,7 @@ function pickDate() {
     <div class="content">
       <span class="label">{{ label }}</span>
     </div>
+    <slot />
   </li>
 </template>
 
@@ -47,6 +48,7 @@ li {
   border-bottom: 1px solid #e6ebf5;
   padding: 12px;
   cursor: pointer;
+  overflow: hidden;
 
   &.is-inactive-month {
     cursor: not-allowed;
