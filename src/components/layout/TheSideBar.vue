@@ -59,7 +59,7 @@ const routes: Route[] = [
           :key="index"
           :class="{ isActive: route.path === appRoute.fullPath }"
         >
-          <router-link :to="route.path">
+          <router-link to="/calendar">
             <UiIcon :name="route.icon" />
             <span>{{ route.name }}</span>
           </router-link>

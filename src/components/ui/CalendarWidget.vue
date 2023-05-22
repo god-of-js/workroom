@@ -38,7 +38,7 @@ const numberOfDaysInSelectedMonth = computed(() => {
 })
 
 const daysInSelectedMonth = computed(() => {
-  return [...Array(numberOfDaysInSelectedMonth.value)].map((day, index) => {
+  return [...Array(numberOfDaysInSelectedMonth.value)].map((_, index) => {
     return {
       date: dayjs(`${yearOfActiveDate.value}-${monthOfActiveDate.value}-${index + 1}`),
       isCurrentMonth: true
@@ -61,7 +61,7 @@ const visibleDaysInPreviousMonth = computed(() => {
     .subtract(visibleNumberOfDaysFromPreviousMonth, 'day')
     .date()
 
-  return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((day, index) => {
+  return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((_, index) => {
     return {
       date: dayjs(
         `${previousMonth.year()}-${previousMonth.month() + 1}-${
