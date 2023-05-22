@@ -42,8 +42,10 @@ router.beforeEach((to, from, next) => {
   // alert(!uid && to.name !== 'RegistrationView');
   if (!uid && to.name !== 'RegistrationView') {
     next({ name: 'RegistrationView' }) // Redirect to RegistrationView
+  } else  if (to.name === 'Dashboard'){
+    next('/calendar') // Continue with the navigation
   } else {
-    next() // Continue with the navigation
+    next()
   }
 })
 
