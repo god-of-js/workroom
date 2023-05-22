@@ -26,9 +26,11 @@ function goToNextMonth() {
 </script>
 <template>
   <div class="d-flex align-center justify-center pa-4 month-navigator">
-    <v-btn variant="icon" rounded><UiIcon name="ArrowLeft" @click="goToPrevMonth" /></v-btn>
+    <v-btn variant="icon" rounded><UiIcon name="ArrowLeft" @click.prevent="goToPrevMonth" /></v-btn>
     <span class="month-details">{{ selectedMonth }}</span>
-    <v-btn variant="icon" rounded><UiIcon name="ArrowRight" @click="goToNextMonth" /></v-btn>
+    <v-btn variant="icon" rounded
+      ><UiIcon name="ArrowRight" @click.prevent="goToNextMonth"
+    /></v-btn>
   </div>
 </template>
 

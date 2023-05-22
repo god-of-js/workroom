@@ -22,7 +22,7 @@ const emit = defineEmits<{
 
 const today = dayjs().format('YYYY-MM-DD')
 const activeDate = computed(() => {
-  return props.modelValue
+  return props.modelValue || dayjs()
 })
 
 const yearOfActiveDate = computed(() => {
@@ -129,6 +129,7 @@ function triggerWithDate(e: Dayjs) {
 <style scoped>
 .calendar {
   background: white;
+  color: #0a1629;
 }
 
 .days-grid {

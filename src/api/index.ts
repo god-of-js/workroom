@@ -1,6 +1,7 @@
 import db from './firebaseConfig'
-import { collection, addDoc } from 'firebase/firestore'
+import { setDoc, doc } from 'firebase/firestore'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import Event from '@/types/Event'
 
 class Api {
   authenticateUser(email: string, password: string) {
@@ -10,8 +11,12 @@ class Api {
     )
   }
 
-  private create(collectionName: string, data: unknown): Promise<unknown> {
-    return addDoc(collection(db, collectionName), data)
+  createEvent(event: Event) {
+    return this.create('event', event.id, event)
+  }
+
+  private create(collectionName: string, id: string, data: unknown): Promise<unknown> {
+    return setDoc(doc(db, collectionName, id), data);
   }
 }
 

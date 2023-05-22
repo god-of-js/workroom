@@ -28,7 +28,8 @@ function pickDate() {
   <li
     :class="{
       'is-inactive-month': !props.isCurrentMonth,
-      'is-today': props.isToday
+      'is-today': props.isToday,
+      'day-item': true
     }"
     @click="pickDate"
   >
@@ -66,7 +67,7 @@ li {
   .label {
     position: absolute;
     margin: 0 12px 12px 12px;
-
+    color: #0a1629;
     z-index: 2;
     right: 0;
     top: 0;
